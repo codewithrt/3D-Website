@@ -8,6 +8,7 @@ import Island from '../models/Island'
 import Sky from '../models/Sky'
 import Bird from '../models/Bird'
 import Plane from '../models/Plane'
+import HomeInfo from '../components/HomeInfo'
 
 const Home = () => {
     // mAIN roTATIONG pART HERER
@@ -46,7 +47,7 @@ const Home = () => {
   return (
     <section className={`w-full h-screen relative ${isrotating?'cursor-grabbing':'cursor-grab'}`}>
       <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
-           
+           {CurrentStage && <HomeInfo CurrentStage = {CurrentStage}/>}
       </div>
      <Canvas className='w-full h-screen bg-transparent' camera={{near:0.1,far:1000}}>
        <Suspense fallback={<Loader/>}> {/* for loader*/}
