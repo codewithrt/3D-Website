@@ -28,7 +28,7 @@ const Contacts = () => {
     }, 4000);
   }
   return (
-    <section className='relative flex lg:flex-col flex-col max-container'>
+    <section className='relative flex lg:flex-row flex-col max-container gap-8'>
       <div className='flex-1 min-w-[50%] flex flex-col'>
         <h1 className='head-text'>
           Get In Touch
@@ -51,7 +51,7 @@ const Contacts = () => {
           </button>
         </form>
       </div>
-      <div className='lg:w-1/2 w-full ;g:h-auto md:h-[550px] h-[350px]'>
+      <div className='lg:w-1/2 w-full g:h-auto md:h-[550px] h-[350px]'>
            <Canvas
             camera={{position:[0,0,5],fov:75,near:0.1,far:1000}}
               >

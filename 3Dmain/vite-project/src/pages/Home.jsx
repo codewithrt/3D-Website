@@ -1,19 +1,34 @@
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import Loader from '../components/Loader'
- {/* <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
-           POPUP
-      </div> */}
 import Island from '../models/Island'
 import Sky from '../models/Sky'
 import Bird from '../models/Bird'
 import Plane from '../models/Plane'
 import HomeInfo from '../components/HomeInfo'
+import Sakura from "../assets/sakura.mp3";
+import soundon from "../assets/icons/soundon.png"
+import soundoff from "../assets/icons/soundoff.png"
+import { useEffect } from 'react'
+
 
 const Home = () => {
     // mAIN roTATIONG pART HERER
     const [isrotating ,setisrotating] = useState(false);
     const [CurrentStage , setCurrentStage] = useState(1);
+    const audioRef = useRef(new Audio(Sakura));
+    audioRef.current.volume = 0.4;
+    audioRef.current.loopv = true;
+    const [isPlaying, setisPlaying] = useState(false)
+    useEffect(() => {
+      if(isPlaying){
+        audioRef.current.play();
+      }
+      return () => {
+        audioRef.current.pause();
+      }
+    }, [isPlaying])
+    
 
   // Adjusting 3d model size for screen size for island
   const adjustIslandForScreenSize= ()=>{
@@ -78,6 +93,14 @@ const Home = () => {
            
        </Suspense>
      </Canvas>
+     <div className='absolute bottom-2 left-2'>
+      <img
+          src={isPlaying?soundon:soundoff}
+          alt='sound'
+          className='w-10 h-10 cursor-pointer object-contain'
+          onClick={()=>{setisPlaying(!isPlaying)}}
+      />
+     </div>
     </section>
   )
 }
